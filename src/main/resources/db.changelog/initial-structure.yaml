@@ -57,3 +57,29 @@ databaseChangeLog:
                   type: VARCHAR(255)
                   constraints:
                     nullable: false
+
+        - createTable:
+            tableName: mail_item_mail_office
+            columns:
+              - column:
+                  name: mail_item_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: mail_office_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: mail_item_mail_office
+            baseColumnNames: mail_item_id
+            referencedTableName: mail_item
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: mail_item_mail_office
+            baseColumnName: mail_office_id
+            referencedTableName: mail_office
+            referencedColumnNames: id
