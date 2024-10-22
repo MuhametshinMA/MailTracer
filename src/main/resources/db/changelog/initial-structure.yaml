@@ -1,15 +1,21 @@
+# db/changelog/initial-structure.yaml
 databaseChangeLog:
   - changeSet:
       id: 1
       author: MaratMuhametshin
       changes:
+        - preConditions:
+            onFail: MARK_RAN
+            not:
+                tableExists:
+                  tableName: mail_item
         - createTable:
             tableName: mail_item
             columns:
               - column:
                   name: id
                   type: BIGSERIAL
-                  constrains:
+                  constraints:
                     primaryKey: true
                     nullable: false
               - column:
@@ -73,13 +79,15 @@ databaseChangeLog:
                     nullable: false
 
         - addForeignKeyConstraint:
+            constraintName: fk_mail_item_mail_office_item
             baseTableName: mail_item_mail_office
             baseColumnNames: mail_item_id
             referencedTableName: mail_item
             referencedColumnNames: id
 
         - addForeignKeyConstraint:
+            constraintName: fk_mail_item_mail_office_office
             baseTableName: mail_item_mail_office
-            baseColumnName: mail_office_id
+            baseColumnNames: mail_office_id
             referencedTableName: mail_office
             referencedColumnNames: id

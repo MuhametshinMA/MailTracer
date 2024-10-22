@@ -1,7 +1,0 @@
-databaseChangeLog:
-  - changeSet:
-      id: 1
-      author: MaratMuhametshin
-      changes:
-        - include:
-            file: db/changelog/initial-structure.yaml
