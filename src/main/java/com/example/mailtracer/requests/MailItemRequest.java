@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Data
@@ -25,4 +26,7 @@ public class MailItemRequest {
 
     @NotBlank(message = "Адрес не может быть пустым")
     private String address;
+
+    @NotNull(message = "Идентификатор почтового отделения не должен быть пустым")
+    private Long officeId;
 }

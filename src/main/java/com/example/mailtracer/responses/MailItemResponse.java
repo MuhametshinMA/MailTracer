@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class MailItemResponse {
-    private String id;
+    private Long id;
     private String recipient;
     private String type;
     private String index;
