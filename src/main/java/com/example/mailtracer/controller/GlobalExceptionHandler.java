@@ -1,5 +1,6 @@
 package com.example.mailtracer.controller;
 
+import com.example.mailtracer.exceptions.MailOfficeExistsException;
 import com.example.mailtracer.exceptions.MailOfficeNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,5 +29,11 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<String> handleMailOfficeNotFound(MailOfficeNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(MailOfficeExistsException.class)
+    @ResponseStatus(HttpStatus.FOUND)
+    public ResponseEntity<String> handleMailOfficeExists(MailOfficeExistsException ex) {
+        return ResponseEntity.status(HttpStatus.FOUND).body(ex.getMessage());
     }
 }

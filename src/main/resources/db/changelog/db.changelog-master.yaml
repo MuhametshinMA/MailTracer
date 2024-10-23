@@ -2,3 +2,5 @@
 databaseChangeLog:
   - include:
       file: db/changelog/initial-structure.yaml
+  - include:
+      file: db/changelog/add-name-to-mail-office.yaml

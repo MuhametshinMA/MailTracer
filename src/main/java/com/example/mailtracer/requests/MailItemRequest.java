@@ -12,6 +12,7 @@ import javax.validation.constraints.Pattern;
 @Data
 @NoArgsConstructor
 public class MailItemRequest {
+
     @NotBlank(message = "Получатель не может быть пустым")
     private String recipient;
 

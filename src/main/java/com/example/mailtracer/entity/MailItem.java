@@ -1,7 +1,9 @@
 package com.example.mailtracer.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,6 +13,8 @@ import java.util.Set;
 @Table(name = "mail_item")
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MailItem {
 
     @Id

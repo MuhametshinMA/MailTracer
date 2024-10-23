@@ -1,6 +1,9 @@
 package com.example.mailtracer.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,6 +12,9 @@ import java.util.Set;
 @Entity
 @Table(name = "mail_office")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MailOffice {
 
     @Id
@@ -17,6 +23,9 @@ public class MailOffice {
 
     @Column(nullable = false)
     private String index;
+
+    @Column(nullable = false)
+    private String name;
 
     @Column(nullable = false)
     private String address;

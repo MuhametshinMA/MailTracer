@@ -1,0 +1,14 @@
+# db/changelog/add-name-to-mail-office.yaml
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: MaratMuhametshin
+      changes:
+        - addColumn:
+            tableName: mail_office
+            columns:
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
