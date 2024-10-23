@@ -10,11 +10,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Constraint(validatedBy = EnumValidator.class)
-@Target({ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE, ElementType.PARAMETER})
+@Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValueOfEnum {
     Class<? extends Enum<?>> enumClass();
-    String message() default "Некоректное значение";
+    String message() default "Значение не входит в допустимые значения.";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

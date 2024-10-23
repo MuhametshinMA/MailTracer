@@ -4,25 +4,25 @@ import com.example.mailtracer.annotations.ValueOfEnum;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class EnumValidator implements ConstraintValidator<ValueOfEnum, String> {
-    private List<String> acceptedValues; // Массив значений перечисления
+    private Enum<?>[] enumValues; // Массив значений перечисления
 
     @Override
     public void initialize(ValueOfEnum annotation) {
-        acceptedValues = Stream.of(annotation.enumClass().getEnumConstants())
-                .map(Enum::name)
-                .collect(Collectors.toList());
+        enumValues = annotation.enumClass().getEnumConstants();
     }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if (value == null) {
-            return true; // Возвращаем true, если значение null (можно обработать отдельно)
+            return true;
         }
-        return acceptedValues.contains(value);
+        for (Enum<?> enumValue : enumValues) {
+            if (enumValue.name().equals(value)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
