@@ -4,10 +4,7 @@ import com.example.mailtracer.requests.MailItemRequest;
 import com.example.mailtracer.service.MailItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,5 +19,11 @@ public class MailController {
     public ResponseEntity<?> save(@Valid @RequestBody MailItemRequest mailItemRequest) {
 
         return mailItemService.registration(mailItemRequest);
+    }
+
+    @PutMapping("/intermediateRegistration/{mailId}/{officeId}")
+    public ResponseEntity<?> intermediateOfficeRegistration(@PathVariable long mailId, @PathVariable long officeId) {
+
+        return mailItemService.intermediateOfficeRegistration(mailId, officeId);
     }
 }

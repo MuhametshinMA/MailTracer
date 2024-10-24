@@ -1,7 +1,8 @@
 package com.example.mailtracer.controller;
 
+import com.example.mailtracer.exceptions.MailEntityNotFoundException;
 import com.example.mailtracer.exceptions.MailOfficeExistsException;
-import com.example.mailtracer.exceptions.MailOfficeNotFoundException;
+import com.example.mailtracer.exceptions.UnregisteredMailException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -25,9 +26,9 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errors);
     }
 
-    @ExceptionHandler(MailOfficeNotFoundException.class)
+    @ExceptionHandler(MailEntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<String> handleMailOfficeNotFound(MailOfficeNotFoundException ex) {
+    public ResponseEntity<String> handleMailOfficeNotFound(MailEntityNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
@@ -35,5 +36,11 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.FOUND)
     public ResponseEntity<String> handleMailOfficeExists(MailOfficeExistsException ex) {
         return ResponseEntity.status(HttpStatus.FOUND).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(UnregisteredMailException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<String> handleUnregisteredMail(UnregisteredMailException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }

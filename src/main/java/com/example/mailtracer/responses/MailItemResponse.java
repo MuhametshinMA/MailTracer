@@ -12,4 +12,5 @@ public class MailItemResponse {
     private String index;
     private String address;
     private String status;
+    private MailOfficeResponse mailOfficeResponse;
 }

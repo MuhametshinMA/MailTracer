@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "mail_item")
@@ -42,5 +41,5 @@ public class MailItem {
             joinColumns = @JoinColumn(name = "mail_item_id"),
             inverseJoinColumns = @JoinColumn(name = "mail_office_id")
     )
-    private Set<MailOffice> mailOffices = new HashSet<>();
+    private List<MailOffice> mailOffices;
 }
