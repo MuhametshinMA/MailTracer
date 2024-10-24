@@ -1,7 +1,7 @@
 package com.example.mailtracer.controller;
 
-import com.example.mailtracer.requests.MailOfficeRequest;
-import com.example.mailtracer.service.MailOfficeService;
+import com.example.mailtracer.requests.OfficeRequest;
+import com.example.mailtracer.service.OfficeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,14 +14,14 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("api/v1/office")
 @RequiredArgsConstructor
-public class MailOfficeController {
+public class OfficeController {
 
-    private final MailOfficeService mailOfficeService;
+    private final OfficeService officeService;
 
     @PostMapping("/registration")
-    public ResponseEntity<?> save(@Valid @RequestBody MailOfficeRequest request) {
+    public ResponseEntity<?> save(@Valid @RequestBody OfficeRequest request) {
 
-        return mailOfficeService.registration(request);
+        return officeService.registration(request);
     }
 
 }

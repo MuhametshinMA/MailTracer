@@ -3,11 +3,9 @@ package com.example.mailtracer.responses;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-
 @Data
 @Builder
-public class MailOfficeResponse {
+public class OfficeResponse {
 
     private Long id;
     private String name;

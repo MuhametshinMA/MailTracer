@@ -1,7 +1,7 @@
 package com.example.mailtracer.requests;
 
 import com.example.mailtracer.annotations.ValueOfEnum;
-import com.example.mailtracer.enums.MailType;
+import com.example.mailtracer.enums.Type;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,13 +11,13 @@ import javax.validation.constraints.Pattern;
 
 @Data
 @NoArgsConstructor
-public class MailItemRequest {
+public class MailRequest {
 
     @NotBlank(message = "Получатель не может быть пустым")
     private String recipient;
 
     @NotBlank(message = "Тип отправления не может быть пустым")
-    @ValueOfEnum(enumClass = MailType.class
+    @ValueOfEnum(enumClass = Type.class
             , message = "Тип отправления должен быть: Письмо, Посылка, Бандероль, Открытка")
     private String type;
 

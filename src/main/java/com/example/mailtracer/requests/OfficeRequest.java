@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
 
 @Data
 @NoArgsConstructor
-public class MailOfficeRequest {
+public class OfficeRequest {
 
     @NotBlank(message = "Индекс не может быть пустым")
     @Pattern(regexp = "\\d{6}", message = "Индекс должен быть в формате 123456")

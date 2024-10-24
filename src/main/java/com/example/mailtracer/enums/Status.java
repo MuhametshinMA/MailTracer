@@ -1,6 +1,6 @@
 package com.example.mailtracer.enums;
 
-public enum MailStatus {
+public enum Status {
     REGISTERED("REG", "Зарегистрировано"),
     SENT("SENT", "Отправлено"),
     IN_TRANSIT("TRANSIT", "Зарегистрировано в промежуточном пункте"),
@@ -11,7 +11,7 @@ public enum MailStatus {
     private final String code;
     private final String description;
 
-    MailStatus(String code, String description) {
+    Status(String code, String description) {
         this.code = code;
         this.description = description;
     }

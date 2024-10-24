@@ -15,7 +15,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MailOffice {
+public class Office {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,6 @@ public class MailOffice {
     @Column(nullable = false)
     private String address;
 
-    @ManyToMany(mappedBy = "mailOffices")
-    private Set<MailItem> mailItems = new HashSet<>();
+    @ManyToMany(mappedBy = "offices")
+    private Set<Mail> mail = new HashSet<>();
 }

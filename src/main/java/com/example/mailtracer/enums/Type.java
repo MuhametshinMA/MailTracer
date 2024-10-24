@@ -1,6 +1,6 @@
 package com.example.mailtracer.enums;
 
-public enum MailType {
+public enum Type {
     LETTER("Письмо"),
     PACKAGE("Посылка"),
     PARCEL("Бандероль"),
@@ -8,7 +8,7 @@ public enum MailType {
 
     private final String description;
 
-    MailType(String description) {
+    Type(String description) {
         this.description = description;
     }
 

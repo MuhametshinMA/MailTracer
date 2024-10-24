@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MailItem {
+public class Mail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +41,5 @@ public class MailItem {
             joinColumns = @JoinColumn(name = "mail_item_id"),
             inverseJoinColumns = @JoinColumn(name = "mail_office_id")
     )
-    private List<MailOffice> mailOffices;
+    private List<Office> offices;
 }

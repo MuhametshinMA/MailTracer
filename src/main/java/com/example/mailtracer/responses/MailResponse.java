@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 @Builder
-public class MailItemResponse {
+public class MailResponse {
     private Long id;
     private String recipient;
     private String type;
     private String index;
     private String address;
     private String status;
-    private MailOfficeResponse mailOfficeResponse;
+    private OfficeResponse officeResponse;
 }
