@@ -25,14 +25,14 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BusinessException.class)
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<String> handleBusinessError(BusinessException ex) {
-        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getErrorCode().getMessage());
     }
 
     @ExceptionHandler(MailEntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<String> handleMailOfficeNotFound(MailEntityNotFoundException ex) {
+    public ResponseEntity<String> handleEntityNotFound(MailEntityNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }

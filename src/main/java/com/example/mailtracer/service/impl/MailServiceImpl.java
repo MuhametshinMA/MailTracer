@@ -64,8 +64,9 @@ public class MailServiceImpl implements MailService {
 
         List<Office> officeList = mail.getOffices();
 
-        if (officeList.isEmpty()) throw ExceptionHandler.raiseException(BusinessException.class,
+        BusinessException b = ExceptionHandler.raiseException(BusinessException.class,
                 ErrorCode.MAIL_UNREGISTERED_ERROR);
+        if (officeList.isEmpty()) throw b;
 
         mail.getOffices().add(office);
 
