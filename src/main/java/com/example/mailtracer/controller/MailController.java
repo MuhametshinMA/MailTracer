@@ -22,20 +22,34 @@ public class MailController {
     }
 
     @PutMapping("/intermediateRegistration/{mailId}/{officeId}")
-    public ResponseEntity<?> intermediateOfficeRegistration(@PathVariable long mailId, @PathVariable long officeId) {
+    public ResponseEntity<?> intermediateOfficeRegistration(
+            @PathVariable long mailId,
+            @PathVariable long officeId
+    ) {
 
         return mailService.intermediateOfficeRegistration(mailId, officeId);
     }
 
     @PutMapping("/send/{mailId}/{officeId}")
-    public ResponseEntity<?> officeSend(@PathVariable long mailId, @PathVariable long officeId) {
+    public ResponseEntity<?> officeSend(
+            @PathVariable long mailId,
+            @PathVariable long officeId) {
 
         return mailService.officeSend(mailId, officeId);
     }
 
     @PutMapping("/arrived/{mailId}/{officeId}")
-    public ResponseEntity<?> delivery(@PathVariable long mailId, @PathVariable long officeId) {
+    public ResponseEntity<?> delivery(
+            @PathVariable long mailId,
+            @PathVariable long officeId) {
 
         return mailService.delivery(mailId, officeId);
     }
+
+    @GetMapping("/trace/{id}")
+    public ResponseEntity<?> trace(@PathVariable long id) {
+
+        return mailService.trace(id);
+    }
+
 }

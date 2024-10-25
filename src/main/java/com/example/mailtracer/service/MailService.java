@@ -10,7 +10,9 @@ public interface MailService {
 
     ResponseEntity<MailResponse> intermediateOfficeRegistration(Long mailId, Long officeId);
 
-    ResponseEntity<MailResponse> officeSend(Long mailItem, Long officeId);
+    ResponseEntity<MailResponse> officeSend(Long mail, Long officeId);
 
-    ResponseEntity<MailResponse> delivery(Long mailItem, Long officeId);
+    ResponseEntity<MailResponse> delivery(Long mail, Long officeId);
+
+    ResponseEntity<MailResponse> trace(Long id);
 }

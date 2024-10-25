@@ -3,6 +3,8 @@ package com.example.mailtracer.responses;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 public class MailResponse {
@@ -12,5 +14,5 @@ public class MailResponse {
     private String index;
     private String address;
     private String status;
-    private OfficeResponse officeResponse;
+    private List<OfficeResponse> officeResponse;
 }

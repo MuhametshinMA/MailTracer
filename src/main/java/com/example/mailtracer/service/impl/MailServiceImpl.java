@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -53,7 +54,7 @@ public class MailServiceImpl implements MailService {
         Mail savedMail = mailRepository.save(mail);
         savedMail.setStatus(Status.REGISTERED.getCode());
 
-        return ResponseEntity.ok(buildResponse(savedMail, office));
+        return ResponseEntity.ok(buildResponse(savedMail, List.of(office)));
     }
 
     @Override
@@ -76,7 +77,7 @@ public class MailServiceImpl implements MailService {
 
         Mail updatedMail = mailRepository.save(mail);
 
-        return ResponseEntity.ok(buildResponse(updatedMail, office));
+        return ResponseEntity.ok(buildResponse(updatedMail, List.of(office)));
     }
 
     @Override
@@ -101,7 +102,7 @@ public class MailServiceImpl implements MailService {
 
         Mail updatedMail = mailRepository.save(mail);
 
-        return ResponseEntity.ok(buildResponse(updatedMail, office));
+        return ResponseEntity.ok(buildResponse(updatedMail, List.of(office)));
     }
 
     @Override
@@ -117,7 +118,15 @@ public class MailServiceImpl implements MailService {
 
         Mail updatedMail = mailRepository.save(mail);
 
-        return ResponseEntity.ok(buildResponse(updatedMail, office));
+        return ResponseEntity.ok(buildResponse(updatedMail, List.of(office)));
+    }
+
+    @Override
+    public ResponseEntity<MailResponse> trace(Long id) {
+
+        Mail mail = getEntityOrThrow(id, mailRepository, Mail.class);
+
+        return ResponseEntity.ok(buildResponse(mail, mail.getOffices()));
     }
 
     private <T, ID> T getEntityOrThrow(ID id, JpaRepository<T, ID> repository, Class<T> entityClass) {
@@ -125,7 +134,16 @@ public class MailServiceImpl implements MailService {
                 .orElseThrow(() -> new MailEntityNotFoundException(entityClass, id));
     }
 
-    private MailResponse buildResponse(Mail mail, Office office) {
+    private MailResponse buildResponse(Mail mail, List<Office> officeList) {
+
+        List<OfficeResponse> officeResponses = officeList.stream()
+                .map(office -> OfficeResponse.builder()
+                        .id(office.getId())
+                        .name(office.getName())
+                        .index(office.getIndex())
+                        .address(office.getAddress())
+                        .build())
+                .collect(Collectors.toList());
         return MailResponse.builder()
                 .id(mail.getId())
                 .recipient(mail.getRecipient())
@@ -133,12 +151,7 @@ public class MailServiceImpl implements MailService {
                 .address(mail.getAddress())
                 .index(mail.getIndex())
                 .status(mail.getStatus())
-                .officeResponse(OfficeResponse.builder()
-                        .id(office.getId())
-                        .name(office.getName())
-                        .index(mail.getIndex())
-                        .address(office.getAddress())
-                        .build())
+                .officeResponse(officeResponses)
                 .build();
     }
 }
