@@ -20,7 +20,7 @@
         <javax.persistence-api-version>2.2</javax.persistence-api-version>
         <lombok.version>1.18.30</lombok.version>
         <validation-api.version>2.0.1.Final</validation-api.version>
-        <springdoc-openapi-starter-webmvc-ui.version>2.0.2</springdoc-openapi-starter-webmvc-ui.version>
+        <springdoc-openapi-ui.version>1.6.14</springdoc-openapi-ui.version>
     </properties>
     <dependencies>
 
@@ -67,7 +67,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.6.14</version>
+            <version>${springdoc-openapi-ui.version}</version>
         </dependency>
 
         <dependency>
